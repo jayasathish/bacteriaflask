@@ -1,13 +1,13 @@
 import os
-from flask import Flask, Response, request, abort, send_from_directory,render_template
+from flask import Flask, Response, request, abort, send_from_directory, render_template
 from PIL import Image
 from io import StringIO
 
-app=Flask(__name__,template_folder='templates')
-
-
+app = Flask(__name__, template_folder='templates')
 WIDTH = 300
 HEIGHT = 300
+
+
 @app.route('/<path:filename>')
 def image(filename):
     try:
@@ -28,6 +28,7 @@ def image(filename):
 
     return send_from_directory('.', filename)
 
+
 @app.route('/')
 @app.route('/bacteria')
 def index():
@@ -45,6 +46,7 @@ def index():
             else:
                 height = min(h, HEIGHT)
                 width = height*aspect
+
             images.append({
                 'width': int(width),
                 'height': int(height),
@@ -52,8 +54,8 @@ def index():
                 "name":"test"
             })
 
+    return render_template('bacteria.html', **{'images': images})
 
-    return render_template('bacteria.html',**{'images': images})
 
 if __name__ == '__main__':
     app.run(threaded=True, port=5000)
