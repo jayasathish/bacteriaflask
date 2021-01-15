@@ -56,4 +56,4 @@ def index():
     return render_template('bacteria.html',**{'images': images})
 
 if __name__ == '__main__':
-    app.run(host="https://bacteriafalsktest.herokuapp.com/")
+    app.run(threaded=True, port=5000)
