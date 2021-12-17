@@ -5,7 +5,7 @@ from io import StringIO
 
 app = Flask(__name__, template_folder='templates')
 WIDTH = 300
-HEIGHT = 300
+HEIGHT = 450
 
 
 @app.route('/<path:filename>')
